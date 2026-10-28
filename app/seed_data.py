@@ -69,6 +69,8 @@ def seed_portfolio_data(db: Session, force: bool = False):
         # Languages
         ("Python", "Languages", "Expert", True),
         ("C++", "Languages", "Advanced", True),
+        ("Rust", "Languages", "Intermediate", True),
+        ("Java", "Languages", "Advanced", True),
         ("TypeScript / JavaScript", "Languages", "Advanced", True),
         ("SQL (PostgreSQL, SQLite)", "Languages", "Advanced", True),
         ("Bash / Shell Scripting", "Languages", "Advanced", False),
@@ -80,13 +82,14 @@ def seed_portfolio_data(db: Session, force: bool = False):
         ("Zero-Trust Communication Protocols", "Distributed Systems & Architecture", "Expert", True),
         ("Proof-of-Compute Verification", "Distributed Systems & Architecture", "Advanced", True),
         ("System Design & Scalability", "Distributed Systems & Architecture", "Expert", True),
+        ("Soroban Smart Contracts (Stellar)", "Distributed Systems & Architecture", "Advanced", True),
 
         # AI & Machine Learning
         ("Multi-Agent AI Pipelines", "AI & Machine Learning", "Expert", True),
         ("AI Safety & Alignment", "AI & Machine Learning", "Advanced", True),
         ("LLM Intent Classification & Routing", "AI & Machine Learning", "Expert", True),
         ("Prompt Engineering & Chains", "AI & Machine Learning", "Advanced", True),
-        ("RAG & Ground Truth Verification", "AI & Machine Learning", "Advanced", True),
+        ("Progressive RAG & Memory Layers", "AI & Machine Learning", "Advanced", True),
         ("Adversarial Critic Systems", "AI & Machine Learning", "Advanced", True),
         ("Ethical AI Systems", "AI & Machine Learning", "Advanced", False),
         ("Predictive Computational Modeling", "AI & Machine Learning", "Intermediate", False),
@@ -95,6 +98,8 @@ def seed_portfolio_data(db: Session, force: bool = False):
         ("FastAPI", "Backend & Cloud", "Expert", True),
         ("RESTful API Design", "Backend & Cloud", "Expert", True),
         ("Asynchronous Programming (asyncio)", "Backend & Cloud", "Expert", True),
+        ("AWS Lambda & Serverless Pipelines", "Backend & Cloud", "Advanced", True),
+        ("MongoDB & Aggregation Framework", "Backend & Cloud", "Advanced", True),
         ("APScheduler & Task Queues", "Backend & Cloud", "Advanced", False),
         ("Tailscale VPN & Mesh Networking", "Backend & Cloud", "Advanced", False),
         ("Redis Streams & Message Passing", "Backend & Cloud", "Advanced", False),
@@ -104,6 +109,7 @@ def seed_portfolio_data(db: Session, force: bool = False):
         ("Digital Forensics & Reverse Engineering", "Security & Systems", "Advanced", True),
         ("Zero-Trust Data Flow Verification", "Security & Systems", "Advanced", True),
         ("Futuristic Systems Design", "Distributed Systems & Architecture", "Advanced", True),
+        ("Non-STL Algorithm Engineering", "Security & Systems", "Advanced", True),
         ("Sandboxing & Isolation (Firecracker)", "Security & Systems", "Advanced", False),
 
         # Soft Skills
@@ -239,6 +245,114 @@ def seed_portfolio_data(db: Session, force: bool = False):
             start_date="Oct 2025",
             end_date="Dec 2025",
             is_featured=True
+        ),
+        Project(
+            title="Cognitive Diplomat — Multi-Agent Negotiation Predictor & RAG",
+            subtitle_role="Lead AI Systems Architect",
+            repo_link="https://github.com/Soldier224K/TypeScript-prediction-API-with-parallel-agents-and-RAG",
+            demo_link="https://loom.com/share/b5c92f183d2a456191b24e931168923a",
+            tech_stack="TypeScript, Express, Ollama LLM, Progressive RAG, In-Memory LRU Cache, Vector-Keyword Hybrid Retrieval",
+            description=(
+                "Engineered a high-performance negotiation next-turn prediction engine orchestrating a 3-persona parallel agent fan-out via Promise.all.\n"
+                "Implemented a progressive RAG layer over tactical negotiation playbooks with keyword-hybrid retrieval and LRU-bounded memory.\n"
+                "Enforced deterministic synthesis using temperature=0 and fixed seed assertions with strict confidence score clamping."
+            ),
+            architecture_highlights=(
+                "Parallel agent fan-out; deterministic LLM synthesis; 500-entry LRU per-request memory cache; full requirement traceability matrix."
+            ),
+            start_date="Sep 2026",
+            end_date="Oct 2026",
+            is_featured=True
+        ),
+        Project(
+            title="Topcoder AI Profile Video Pipeline — Async Cloud-Native Engine",
+            subtitle_role="Cloud & AI Pipeline Architect",
+            repo_link="https://github.com/Soldier224K/Topcoder-Profile-Intro-Video-Generator-AI-Pipeline-Async-Scalable-",
+            demo_link="https://topcoder-video-pipeline.onrender.com",
+            tech_stack="Python, AWS Lambda, MoviePy/FFmpeg, Streamlit, Asynchronous Orchestration, Docker, Render",
+            description=(
+                "Architected an event-driven serverless video processing pipeline that automatically converts raw member intro footage into professional branded Topcoder videos.\n"
+                "Built an AWS Lambda queue consumer for scalable background transcription, caption overlay, and audio normalization.\n"
+                "Delivered an interactive Streamlit operational dashboard for cost, performance, and compute budget analysis."
+            ),
+            architecture_highlights=(
+                "Decoupled queue-driven serverless architecture; dynamic FFmpeg rendering pipeline; budget and resource observability dashboard."
+            ),
+            start_date="Aug 2026",
+            end_date="Sep 2026",
+            is_featured=True
+        ),
+        Project(
+            title="DealVault & Pactum — Stellar Soroban Smart Contract Escrow",
+            subtitle_role="Smart Contract & Backend Engineer",
+            repo_link="https://github.com/Soldier224K/dealvault-platform-escrow",
+            demo_link="https://github.com/Soldier224K/Pactum",
+            tech_stack="Rust, Soroban Smart Contracts, Stellar Testnet, TypeScript, Express, Web3",
+            description=(
+                "Co-developed an enterprise-grade escrow infrastructure and recurring commitment registry on the Stellar blockchain.\n"
+                "Authored Soroban smart contracts enforcing programmatic fund locking, milestone verification, and automated payouts.\n"
+                "Constructed a tamper-proof on-chain compliance history tracking fulfillment status for service-level commitments."
+            ),
+            architecture_highlights=(
+                "Non-custodial smart contract vaults; state-machine commitment tracker; cryptographic transaction signing via Stellar SDK."
+            ),
+            start_date="Jul 2026",
+            end_date="Aug 2026",
+            is_featured=True
+        ),
+        Project(
+            title="DSA SpaceOPs — Satellite Mission Operations & Navigation Engine",
+            subtitle_role="Systems & Algorithm Engineer",
+            repo_link="https://github.com/Soldier224K/DSA-SpaceOPs",
+            demo_link="https://github.com/Soldier224K/DSA-SpaceOPs",
+            tech_stack="C++, Non-STL Custom Data Structures, AVL Trees, Priority Queues, Graph Algorithms, Dijkstra",
+            description=(
+                "Engineered a mission control and cislunar spacecraft communications router implementing 7 custom data structures completely from scratch without STL containers.\n"
+                "Implemented an AVL self-balancing mission registry, Dijkstra minimum-latency routing for cislunar mesh networks, and priority queue activity arbiters.\n"
+                "Designed an abort-sequence navigational rollback stack with zero memory leaks and deterministic sub-millisecond execution."
+            ),
+            architecture_highlights=(
+                "Zero-STL core architecture; custom self-balancing AVL trees; Dijkstra shortest-path network topology; O(1) abort stack rollback."
+            ),
+            start_date="May 2026",
+            end_date="Jun 2026",
+            is_featured=False
+        ),
+        Project(
+            title="Exam Question Paper Generator — ITM Skills University",
+            subtitle_role="Desktop Software Architect",
+            repo_link="https://github.com/Soldier224K/ExamQuestionPaperGenerator_JAVA",
+            demo_link="https://github.com/Soldier224K/ExamQuestionPaperGenerator_JAVA/blob/main/ExamQuestionPaperGeneratorDocumentation.pdf",
+            tech_stack="Java, Swing MVC, Custom Graphics2D, File I/O Streams, Deterministic Paper Synthesis",
+            description=(
+                "Engineered a database-less desktop Java application for faculty at ITM Skills University and School of Future Tech.\n"
+                "Built an algorithmic question selector that generates balanced examination papers adhering to difficulty, topic weights, and mark constraints.\n"
+                "Authored complete institutional software documentation and mathematical generation proofs."
+            ),
+            architecture_highlights=(
+                "Zero-database portability using native file streams; pure MVC architecture; custom Graphics2D print formatting."
+            ),
+            start_date="Apr 2026",
+            end_date="May 2026",
+            is_featured=False
+        ),
+        Project(
+            title="WorkHub — Coworking Space Management Platform",
+            subtitle_role="Backend & Database Architect",
+            repo_link="https://github.com/Soldier224K/WorkHub",
+            demo_link="https://github.com/Soldier224K/WorkHub",
+            tech_stack="Node.js, Express, MongoDB, Aggregation Pipeline, JWT RBAC, QR Code Verification",
+            description=(
+                "Engineered a coworking space reservation backend featuring zero-double-booking atomic concurrency.\n"
+                "Implemented real-time availability scrubbing and MongoDB aggregation pipelines for space utilization analytics.\n"
+                "Built dynamic floorplan coordinate mapping and QR-based automated desk unlock verification."
+            ),
+            architecture_highlights=(
+                "Atomic reservation locking; 2D floorplan coordinate management; multi-role JWT RBAC security."
+            ),
+            start_date="Mar 2026",
+            end_date="Apr 2026",
+            is_featured=False
         )
     ])
 

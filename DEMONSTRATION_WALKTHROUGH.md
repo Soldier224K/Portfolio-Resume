@@ -174,8 +174,8 @@ Inspection of `portfolio.db` via `/api/database/inspect` and CLI SQLite:
 | Table Name | Primary Key | Record Count | Description | Sample Verified Record |
 |---|---|:---:|---|---|
 | **`profiles`** | `id` (INTEGER) | 1 | Personal info & career summary | Raj Bharat Rasal, Kharghar Navi Mumbai (Founder of SecureVerse) |
-| **`projects`** | `id` (INTEGER) | 5 | Distributed systems & AI pipelines | *SATURDAY / SUNDAY*, *BioShield AI*, *F.R.I.D.A.Y* |
-| **`skills`** | `id` (INTEGER) | 34 | Categorized competencies & proficiencies | *Distributed Systems Architecture*, *AI Safety & Alignment* |
+| **`projects`** | `id` (INTEGER) | 11 | Distributed systems, AI pipelines & blockchain | *SATURDAY / SUNDAY*, *Cognitive Diplomat*, *DealVault* |
+| **`skills`** | `id` (INTEGER) | 40 | Categorized competencies & proficiencies | *Distributed Systems*, *AI Safety*, *Soroban* |
 | **`educations`** | `id` (INTEGER) | 3 | Formal university & school education | ITM Skills University (B.Tech CSE, 2025-2029) |
 | **`experiences`** | `id` (INTEGER) | 2 | Engineering leadership & pedagogy | SecureVerse (Founder & Architect), Tutoring Practice |
 | **`publications`** | `id` (INTEGER) | 2 | Architectural whitepapers & specifications | *HAMIA Architecture Specification* (Oct 2026) |
@@ -196,6 +196,12 @@ sqlite3 portfolio.db "SELECT id, title, tech_stack FROM projects;"
 3|EduOS — AI Curiosity-First Education Engine|Python, FastAPI, WhatsApp Cloud API, Prompt Chains, Knowledge Graph, SQLite
 4|BioShield AI — Computational Biosafety & Health Resilience Engine|Python, PyTorch, Predictive Modeling, Simulation Engines, FastAPI, Docker
 5|SecureVerse — Decentralized Zero-Trust Architecture|Python, Cryptography, Zero-Trust Architecture, Distributed Ledger, REST APIs
+6|Cognitive Diplomat — Multi-Agent Negotiation Predictor & RAG|TypeScript, Express, Ollama LLM, Progressive RAG, In-Memory LRU Cache, Vector-Keyword Hybrid Retrieval
+7|Topcoder AI Profile Video Pipeline — Async Cloud-Native Engine|Python, AWS Lambda, MoviePy/FFmpeg, Streamlit, Asynchronous Orchestration, Docker, Render
+8|DealVault & Pactum — Stellar Soroban Smart Contract Escrow|Rust, Soroban Smart Contracts, Stellar Testnet, TypeScript, Express, Web3
+9|DSA SpaceOPs — Satellite Mission Operations & Navigation Engine|C++, Non-STL Custom Data Structures, AVL Trees, Priority Queues, Graph Algorithms, Dijkstra
+10|Exam Question Paper Generator — ITM Skills University|Java, Swing MVC, Custom Graphics2D, File I/O Streams, Deterministic Paper Synthesis
+11|WorkHub — Coworking Space Management Platform|Node.js, Express, MongoDB, Aggregation Pipeline, JWT RBAC, QR Code Verification
 ```
 
 ---
