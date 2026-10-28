@@ -285,3 +285,4 @@ The complete automated live walkthrough is recorded in high-definition (1280x720
 * **1:04 - 1:24**: Dynamic JD Matcher (loading JD 1: Distributed Systems Architect, running Gemini analysis, viewing 88% match score, matched vs missing skills).
 * **1:24 - 1:40**: Live ATS Resume Preview & Export (inspecting rendered resume, showing PDF & DOCX download buttons).
 * **1:40 - 2:05**: Dynamic Re-generation for JD 2 (switching to AI Multi-Agent role, re-running analysis, showing instant updates to tailored summary and project selections).
+
