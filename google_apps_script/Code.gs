@@ -4,13 +4,21 @@
  * Instructions:
  * 1. Open Google Sheets -> Extensions -> Apps Script
  * 2. Replace Code.gs with this code.
- * 3. Click 'Deploy' -> 'New deployment'
- * 4. Select type: 'Web app'
- * 5. Set 'Execute as': 'Me'
- * 6. Set 'Who has access': 'Anyone'
- * 7. Click 'Deploy' and copy the Web App URL.
- * 8. Paste this URL into the Portfolio System's Google Sheets Sync Hub!
+ * 3. Select 'initialAuth' in the function dropdown and click 'Run' to authorize.
+ * 4. Click 'Deploy' -> 'New deployment' -> Select type: 'Web app'
+ * 5. Set 'Execute as': 'Me', 'Who has access': 'Anyone'
+ * 6. Click 'Deploy' and copy the Web App URL into the Portfolio app!
+ * 
+ * NOTE: If you see "Error 401: invalid_client", open Google Sheets in an
+ * Incognito window with ONLY your primary Google account signed in.
  */
+
+// Run this once in the editor to grant authorization without 401 errors
+function initialAuth() {
+  var ss = SpreadsheetApp.getActiveSpreadsheet();
+  Logger.log("Authorized successfully for spreadsheet: " + ss.getName());
+  return "Authorized!";
+}
 
 function doPost(e) {
   try {

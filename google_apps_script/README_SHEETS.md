@@ -13,7 +13,24 @@ This portfolio management system integrates seamlessly with **Google Sheets** th
 
 ---
 
-### 60-Second Setup for Live Sync:
+### Troubleshooting: "Error 401: invalid_client"
+If Google gives you `Error 401: invalid_client` during authorization:
+1. **Cause**: You are logged into **more than one Google Account** in your browser (e.g. personal + university/work). Google Apps Script's OAuth redirects to the wrong account profile (`/u/0` vs `/u/1`), causing Google's identity server to reject the client.
+2. **Solution (Takes 30 seconds)**:
+   - Open a **New Incognito Window** (`Cmd + Shift + N` on Mac).
+   - Log into **ONLY** your intended account (`rajrasal0806@gmail.com`).
+   - Open your Google Sheet -> **Extensions > Apps Script**.
+   - Deploy as Web App -> Authorize. It will succeed immediately!
+
+---
+
+### Alternative: Instant Zero-Auth Import
+If you do not want to use Apps Script at all:
+1. Open [sheets.new](https://sheets.new).
+2. Click **File > Import > Upload**.
+3. Select or drag [`sample_data/exported_portfolio.xlsx`](../sample_data/exported_portfolio.xlsx).
+4. Select *Replace spreadsheet* and click **Import data**.
+5. All 9 sheets (`Profile`, `Education`, `Skills`, `Experience`, `Projects`, `Certifications`, `Achievements`, `Publications`, `Languages`) will be populated and formatted immediately without requiring any authorization!
 
 1. **Create or Open a Google Sheet**:
    - Open [Google Sheets](https://sheets.new) and create a new blank spreadsheet.
