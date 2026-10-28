@@ -1,0 +1,22 @@
+# Job Description 2: AI Systems & Multi-Agent Infrastructure Engineer
+Company: Nexus Agentic Platforms
+Target Role: AI Systems & Multi-Agent Infrastructure Engineer
+Location: San Francisco, CA / Remote
+
+About the Role:
+Join our core AI platform engineering team building next-generation multi-agent execution pipelines and decoupled LLM backends. You will formulate mediator agent topologies, implement confidence-based intent classification, and build auditable knowledge engines that bridge conversational intent with distributed execution.
+
+Key Responsibilities:
+- Design strictly decoupled multi-agent architectures (mediator patterns, Herald/Nexus/Dispatch topologies) preventing circular agent calls and deadlocks.
+- Implement intent classification routing with confidence scoring thresholds to catch ambiguous user queries and trigger conversational disambiguation.
+- Build resilient asynchronous task queues, message dispatchers, and external communication integrations (FastAPI, Baileys/WhatsApp, APScheduler).
+- Integrate curiosity-first algorithmic engines that prioritize conceptual knowledge graph exploration over static information delivery.
+- Author technical system designs and product documentation demonstrating end-to-end auditable state management.
+
+Required Qualifications:
+- Demonstrated experience designing multi-agent or LLM-orchestrated backend infrastructure.
+- High proficiency in Python, FastAPI, asynchronous event loops, and prompt chaining pipelines.
+- Deep focus on AI ground-truth verification, avoiding hallucinations, and maintaining strict auditability.
+- Experience delivering production-ready integrations under rapid hackathon or early-stage development cycles.
+- Strong communication skills with experience mentoring or simplifying complex technical concepts.
+

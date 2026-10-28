@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Portfolio Management & Dynamic Resume Engine</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>">
+</head>
+<body>
+
+    <!-- TOP NAVBAR -->
+    <header class="navbar">
+        <div class="nav-brand">
+            <div class="logo-badge">PORTFOLIO // AI</div>
+            <div class="brand-text">
+                <h1>Raj Bharat Rasal</h1>
+                <p>Systems Architecture & Distributed AI</p>
+            </div>
+        </div>
+
+        <nav class="nav-tabs">
+            <button class="nav-tab-btn active" data-tab="portfolio">
+                <span>✨</span> Live Portfolio
+            </button>
+            <button class="nav-tab-btn" data-tab="database">
+                <span>🗄️</span> Database Manager
+            </button>
+            <button class="nav-tab-btn" data-tab="ai-parser">
+                <span>⚡</span> AI Text Parser
+            </button>
+            <button class="nav-tab-btn" data-tab="sheets">
+                <span>📊</span> Google Sheets
+            </button>
+            <button class="nav-tab-btn" data-tab="jd-analyzer">
+                <span>🎯</span> JD Matcher
+            </button>
+            <button class="nav-tab-btn" data-tab="resume-preview">
+                <span>📄</span> Resume Preview
+            </button>
+        </nav>
+
+        <div class="nav-actions">
+            <span id="geminiStatusBadge" class="badge-status inactive">
+                <span class="dot"></span> Gemini (Rule Engine)
+            </span>
+            <button class="btn btn-outline btn-sm" onclick="openSettingsModal()">
+                ⚙️ Settings
+            </button>
+            <button class="btn btn-outline btn-sm" id="resetDbBtn" title="Reset to verified data">
+                🔄 Reset
+            </button>
+        </div>
+    </header>
+
+    <!-- MAIN APP CONTENT -->
+    <main class="main-content">
+
+        <!-- ========================================== -->
+        <!-- TAB 1: LIVE PORTFOLIO SHOWCASE             -->
+        <!-- ========================================== -->
+        <section id="tab-portfolio" class="tab-pane active">
+            <!-- Hero Section -->
+            <div class="hero-section">
+                <div class="hero-pill">
+                    <span class="dot" style="background:var(--accent-cyan);"></span>
+                    Verified Portfolio & Systems Architecture
+                </div>
+                <h1 class="hero-title" id="showcaseName">Raj Bharat Rasal</h1>
+                <p class="hero-subtitle" id="showcaseTitle">Backend Systems Architect & Distributed AI Engineer</p>
+                <p style="color:var(--text-secondary); max-width:750px; margin:0 auto 1.5rem; font-size:0.95rem; line-height:1.6;" id="showcaseSummary">
+                    Second-year B.Tech student focused on backend systems architecture, distributed computing, and multi-agent AI pipelines...
+                </p>
+
+                <div class="hero-meta-grid">
+                    <div class="meta-item">
+                        <span>📍</span> <span id="showcaseLocation">Kharghar, Navi Mumbai</span>
+                    </div>
+                    <div class="meta-item">
+                        <span>✉️</span> <a id="showcaseEmail" href="mailto:rajrasal0806@gmail.com">rajrasal0806@gmail.com</a>
+                    </div>
+                    <div class="meta-item">
+                        <span>📞</span> <span id="showcasePhone">+91 8766028985</span>
+                    </div>
+                    <div class="meta-item">
+                        <span>💼</span> <a id="showcaseLinkedIn" href="https://linkedin.com/in/cyber-monk" target="_blank">LinkedIn</a>
+                    </div>
+                    <div class="meta-item">
+                        <span>🐙</span> <a id="showcaseGithub" href="https://github.com/Soldier224K" target="_blank">GitHub</a>
+                    </div>
+                </div>
+
+                <div class="stat-pills-row">
+                    <div class="stat-box">
+                        <div class="stat-num" id="statProjectsCount">4</div>
+                        <div class="stat-label">Production Systems</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-num" id="statSkillsCount">28</div>
+                        <div class="stat-label">Core Competencies</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-num" id="statWhitepapersCount">2</div>
+                        <div class="stat-label">Architecture Whitepapers</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-num">3rd</div>
+                        <div class="stat-label">Deal Dome Challenge</div>
+                    </div>
+                </div>
+
+                <div style="display:flex; justify-content:center; gap:0.75rem;">
+                    <button class="btn btn-primary" onclick="switchTab('jd-analyzer')">
+                        🎯 Match Against Job Description
+                    </button>
+                    <button class="btn btn-outline" onclick="switchTab('sheets')">
+                        📊 Export to Google Sheets
+                    </button>
+                </div>
+            </div>
+
+            <!-- Featured Systems & Architecture -->
+            <div style="margin-top:2.5rem;">
+                <div class="card-header">
+                    <div>
+                        <h2 class="card-title">Featured Distributed & AI Systems</h2>
+                        <div class="card-subtitle">Zero-trust networks, tensor sharding, and multi-agent communication backends</div>
+                    </div>
+                </div>
+                <div class="projects-grid" id="showcaseProjectsGrid">
+                    <!-- Dynamic project cards -->
+                </div>
+            </div>
+
+            <!-- Architecture Whitepapers -->
+            <div style="margin-top:2.5rem;">
+                <div class="card-header">
+                    <div>
+                        <h2 class="card-title">System Design Whitepapers & Specifications</h2>
+                        <div class="card-subtitle">High-level architectural blueprints and formal system documentation</div>
+                    </div>
+                </div>
+                <div class="projects-grid" id="showcasePubsGrid">
+                    <!-- Dynamic whitepaper cards -->
+                </div>
+            </div>
+
+            <!-- Skills Matrix -->
+            <div style="margin-top:2.5rem;" class="card">
+                <div class="card-header">
+                    <div>
+                        <h2 class="card-title">Technical & Architectural Skills Matrix</h2>
+                        <div class="card-subtitle">Verified proficiencies in systems engineering, protocols, and AI tooling</div>
+                    </div>
+                </div>
+                <div id="showcaseSkillsMatrix">
+                    <!-- Dynamic skills categories -->
+                </div>
+            </div>
+        </section>
+
+        <!-- ========================================== -->
+        <!-- TAB 2: DATABASE MANAGER (CRUD)             -->
+        <!-- ========================================== -->
+        <section id="tab-database" class="tab-pane">
+            <div class="card">
+                <div class="card-header">
+                    <div>
+                        <h2 class="card-title">Structured Portfolio Database Manager</h2>
+                        <div class="card-subtitle">Reliable SQLite relational storage with full CRUD capabilities</div>
+                    </div>
+                    <div style="display:flex; gap:0.5rem;">
+                        <button class="btn btn-primary btn-sm" onclick="openAddEntryModal()">
+                            + Add New Entry
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Sub tabs for 9 categories -->
+                <div class="sub-tabs">
+                    <button class="sub-tab-btn active" data-subtab="profile">Profile</button>
+                    <button class="sub-tab-btn" data-subtab="skills">Skills</button>
+                    <button class="sub-tab-btn" data-subtab="projects">Projects</button>
+                    <button class="sub-tab-btn" data-subtab="education">Education</button>
+                    <button class="sub-tab-btn" data-subtab="experiences">Experience</button>
+                    <button class="sub-tab-btn" data-subtab="certifications">Certifications</button>
+                    <button class="sub-tab-btn" data-subtab="achievements">Achievements</button>
+                    <button class="sub-tab-btn" data-subtab="publications">Whitepapers</button>
+                    <button class="sub-tab-btn" data-subtab="languages">Languages</button>
+                </div>
+
+                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1rem;">
+                    <h3 id="crudCategoryTitle" style="font-size:1rem; font-weight:700;">Profile</h3>
+                    <span style="font-size:0.75rem; color:var(--text-muted);">Syncs automatically with exported Google Sheets</span>
+                </div>
+
+                <div class="table-responsive">
+                    <table class="data-table">
+                        <thead id="crudTableHeader"></thead>
+                        <tbody id="crudTableBody"></tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========================================== -->
+        <!-- TAB 3: AI UNSTRUCTURED TEXT PARSER         -->
+        <!-- ========================================== -->
+        <section id="tab-ai-parser" class="tab-pane">
+            <div class="card">
+                <div class="card-header">
+                    <div>
+                        <h2 class="card-title">⚡ Gemini AI Unstructured Information Parser</h2>
+                        <div class="card-subtitle">Convert raw resume text, messy notes, or job profiles into structured database records</div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Paste Raw Resume, Bio, or Unstructured Notes:</label>
+                    <textarea id="unstructuredTextInput" class="form-control" style="min-height:160px;" placeholder="Paste raw resume or career details here... e.g.:&#10;Raj Bharat Rasal&#10;rajrasal0806@gmail.com | +91 8766028985&#10;Skills: Python, C++, Distributed Systems, Tensor Sharding...&#10;Projects: Saturday/Sunday distributed compute network..."></textarea>
+                </div>
+
+                <div style="display:flex; gap:0.75rem; margin-bottom:1.5rem;">
+                    <button id="parseTextBtn" class="btn btn-primary">
+                        Extract Structured Fields with Gemini
+                    </button>
+                </div>
+
+                <div id="parsedOutputContainer" style="display:none; background:rgba(15,23,42,0.9); border:1px solid var(--border-color); border-radius:var(--radius-md); padding:1.25rem;">
+                    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.75rem;">
+                        <h3 style="font-size:0.95rem; font-weight:700; color:var(--accent-cyan);">Extracted Schema JSON:</h3>
+                        <button id="importParsedBtn" class="btn btn-cyan btn-sm">
+                            Import Directly into Database
+                        </button>
+                    </div>
+                    <pre id="parsedJsonPreview" style="max-height:300px; overflow-y:auto; font-family:var(--font-mono); font-size:0.78rem; color:#cbd5e1;"></pre>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========================================== -->
+        <!-- TAB 4: GOOGLE SHEETS INTEGRATION HUB       -->
+        <!-- ========================================== -->
+        <section id="tab-sheets" class="tab-pane">
+            <div class="card">
+                <div class="card-header">
+                    <div>
+                        <h2 class="card-title">📊 Google Sheets Synchronization Hub</h2>
+                        <div class="card-subtitle">Export all 9 portfolio categories to Google Sheets format or sync live via Apps Script</div>
+                    </div>
+                    <a href="/api/sheets/export-xlsx" class="btn btn-primary" download>
+                        📥 Download Multi-Tab XLSX (Google Sheets Ready)
+                    </a>
+                </div>
+
+                <p style="font-size:0.85rem; color:var(--text-secondary); margin-bottom:1.5rem;">
+                    Every update made in the Portfolio Database is synchronized across 9 separate sheets: 
+                    <code>Profile</code>, <code>Education</code>, <code>Skills</code>, <code>Experience</code>, <code>Projects</code>, 
+                    <code>Certifications</code>, <code>Achievements</code>, <code>Publications</code>, and <code>Languages</code>.
+                </p>
+
+                <!-- Live Sync Webhook Form -->
+                <div style="background:rgba(15, 23, 42, 0.85); border:1px solid var(--border-color); border-radius:var(--radius-md); padding:1.25rem; margin-bottom:2rem;">
+                    <h3 style="font-size:0.95rem; font-weight:700; margin-bottom:0.5rem; color:var(--accent-cyan);">Live 2-Way Google Sheets Sync</h3>
+                    <p style="font-size:0.8rem; color:var(--text-secondary); margin-bottom:1rem;">
+                        Deploy our included Google Apps Script in your Google Sheet, then paste the Web App URL below for 1-click cloud sync.
+                    </p>
+                    <div style="display:flex; gap:0.5rem; flex-wrap:wrap;">
+                        <input id="sheetsWebhookUrlInput" type="text" class="form-control" style="flex:1; min-width:320px;" placeholder="https://script.google.com/macros/s/.../exec">
+                        <button id="syncSheetsBtn" class="btn btn-cyan">
+                            Push Database to Live Google Sheet
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Database stats summary -->
+                <div id="sheetsTabSummary"></div>
+
+                <!-- Step by step instructions -->
+                <div style="margin-top:2rem; background:rgba(15, 23, 42, 0.6); border:1px solid var(--border-color); border-radius:var(--radius-md); padding:1.25rem;">
+                    <h3 style="font-size:0.9rem; font-weight:700; margin-bottom:0.5rem;">Quick Setup Guide (Google Apps Script):</h3>
+                    <ol style="font-size:0.82rem; color:var(--text-secondary); margin-left:1.25rem; line-height:1.7;">
+                        <li>Open <a href="https://sheets.new" target="_blank" style="color:var(--accent-cyan);">sheets.new</a> and create a blank spreadsheet.</li>
+                        <li>Go to <strong>Extensions &gt; Apps Script</strong>.</li>
+                        <li>Copy the contents of <code>google_apps_script/Code.gs</code> from this repository and paste it into the editor.</li>
+                        <li>Click <strong>Deploy &gt; New deployment &gt; Web app</strong>. Set access to <em>Anyone</em> and click Deploy.</li>
+                        <li>Paste the deployment URL above and click <strong>Push Database to Live Google Sheet</strong>!</li>
+                    </ol>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========================================== -->
+        <!-- TAB 5: JD ANALYZER & RESUME BUILDER        -->
+        <!-- ========================================== -->
+        <section id="tab-jd-analyzer" class="tab-pane">
+            <div class="card">
+                <div class="card-header">
+                    <div>
+                        <h2 class="card-title">🎯 Gemini Job Description Matcher & Optimizer</h2>
+                        <div class="card-subtitle">Analyze target job requirements, evaluate match percentage, and curate the optimal resume</div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Pre-loaded Industry Target Roles (One-Click Selection):</label>
+                    <select id="sampleJdSelect" class="form-control" style="background:#111827;"></select>
+                </div>
+
+                <div style="display:grid; grid-template-columns: 2fr 1fr; gap:1rem; margin-bottom:1rem;">
+                    <div class="form-group">
+                        <label class="form-label">Target Role Title:</label>
+                        <input id="targetTitleInput" type="text" class="form-control" value="Backend & Distributed Systems Architect">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">&nbsp;</label>
+                        <button id="analyzeJdBtn" class="btn btn-primary" style="width:100%; height:38px;">
+                            Analyze with Gemini AI
+                        </button>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Paste Job Description (JD):</label>
+                    <textarea id="jdInput" class="form-control" style="min-height:140px;" placeholder="Paste job description text here or pick from pre-loaded samples above..."></textarea>
+                </div>
+
+                <!-- Analysis Results Section (Dynamic) -->
+                <div id="analysisResultsCard" style="display:none; margin-top:1.5rem;">
+                    <div class="match-score-card">
+                        <div class="score-circle">
+                            <span class="score-num" id="matchScoreNum">88%</span>
+                            <span class="score-text">MATCH</span>
+                        </div>
+                        <div class="match-details">
+                            <h3 id="detectedRoleTitle">Backend &amp; Distributed Systems Architect</h3>
+                            <p id="detectedCompany">Target Organization</p>
+                            <div style="display:flex; gap:0.4rem; margin-top:0.4rem; flex-wrap:wrap;" id="domainKeywordsWrap"></div>
+                        </div>
+                    </div>
+
+                    <div style="display:grid; grid-template-columns: 1fr 1fr; gap:1.25rem; margin-bottom:1.5rem;">
+                        <div style="background:rgba(15,23,42,0.7); border:1px solid var(--border-color); border-radius:var(--radius-md); padding:1rem;">
+                            <h4 style="font-size:0.85rem; font-weight:700; color:var(--accent-emerald); margin-bottom:0.5rem;">✓ Matched Competencies in Portfolio:</h4>
+                            <div id="matchedSkillsWrap" style="display:flex; flex-wrap:wrap; gap:0.35rem;"></div>
+                        </div>
+                        <div style="background:rgba(15,23,42,0.7); border:1px solid var(--border-color); border-radius:var(--radius-md); padding:1rem;">
+                            <h4 style="font-size:0.85rem; font-weight:700; color:var(--accent-rose); margin-bottom:0.5rem;">+ Recommended Keyword Additions:</h4>
+                            <div id="missingSkillsWrap" style="display:flex; flex-wrap:wrap; gap:0.35rem;"></div>
+                        </div>
+                    </div>
+
+                    <div style="background:rgba(15,23,42,0.7); border:1px solid var(--border-color); border-radius:var(--radius-md); padding:1rem; margin-bottom:1.5rem;">
+                        <h4 style="font-size:0.85rem; font-weight:700; color:#a5b4fc; margin-bottom:0.5rem;">💡 Strategic Recommendations:</h4>
+                        <ul id="recommendationsList" style="font-size:0.82rem; color:var(--text-secondary); margin-left:1.25rem; line-height:1.6;"></ul>
+                    </div>
+                </div>
+
+                <!-- Tailored Professional Summary Editor -->
+                <div class="form-group" style="margin-top:1.5rem;">
+                    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.35rem;">
+                        <label class="form-label" style="margin-bottom:0;">AI Tailored Professional Summary (Grounded in Verified Truth):</label>
+                        <span style="font-size:0.75rem; color:var(--accent-emerald);">Verified against candidate portfolio</span>
+                    </div>
+                    <textarea id="tailoredSummaryInput" class="form-control" style="min-height:95px;" oninput="updateLiveResumePreview()"></textarea>
+                </div>
+
+                <!-- Customizer Checklists -->
+                <h3 style="font-size:1rem; font-weight:700; margin:1.5rem 0 0.75rem;">Customize Information to Include in Resume:</h3>
+                
+                <div style="display:grid; grid-template-columns: 1fr 1fr; gap:1.25rem;">
+                    <!-- Projects selection -->
+                    <div class="card" style="padding:1rem;">
+                        <h4 style="font-size:0.85rem; font-weight:700; margin-bottom:0.5rem; color:var(--accent-indigo);">Select Featured Projects:</h4>
+                        <div id="projectSelectionList" class="selection-list"></div>
+                    </div>
+
+                    <!-- Skills selection -->
+                    <div class="card" style="padding:1rem;">
+                        <h4 style="font-size:0.85rem; font-weight:700; margin-bottom:0.5rem; color:var(--accent-cyan);">Select Skills to Feature:</h4>
+                        <div id="skillSelectionList" class="selection-list"></div>
+                    </div>
+                </div>
+
+                <div style="display:grid; grid-template-columns: 1fr 1fr; gap:1.25rem; margin-top:1rem;">
+                    <!-- Experience selection -->
+                    <div class="card" style="padding:1rem;">
+                        <h4 style="font-size:0.85rem; font-weight:700; margin-bottom:0.5rem; color:#a5b4fc;">Select Experience &amp; Leadership:</h4>
+                        <div id="expSelectionList" class="selection-list"></div>
+                    </div>
+
+                    <!-- Publications selection -->
+                    <div class="card" style="padding:1rem;">
+                        <h4 style="font-size:0.85rem; font-weight:700; margin-bottom:0.5rem; color:#fbcfe8;">Select Whitepapers &amp; Specifications:</h4>
+                        <div id="pubSelectionList" class="selection-list"></div>
+                    </div>
+                </div>
+
+                <div style="margin-top:1.5rem; text-align:right;">
+                    <button class="btn btn-primary" onclick="switchTab('resume-preview')">
+                        Proceed to Live Resume Preview &amp; Export →
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========================================== -->
+        <!-- TAB 6: RESUME PREVIEW & DOWNLOAD           -->
+        <!-- ========================================== -->
+        <section id="tab-resume-preview" class="tab-pane">
+            <div class="card">
+                <div class="card-header no-print">
+                    <div>
+                        <h2 class="card-title">Live ATS-Compliant Resume Preview</h2>
+                        <div class="card-subtitle">Verified content dynamically generated from portfolio database</div>
+                    </div>
+                    <div style="display:flex; gap:0.5rem; flex-wrap:wrap;">
+                        <button id="downloadPdfBtn" class="btn btn-primary">
+                            📥 Download PDF
+                        </button>
+                        <button id="downloadDocxBtn" class="btn btn-cyan">
+                            📝 Download Word (.docx)
+                        </button>
+                        <button id="printResumeBtn" class="btn btn-outline">
+                            🖨️ Print
+                        </button>
+                    </div>
+                </div>
+
+                <!-- ATS Document Container -->
+                <div id="liveResumeDocument" class="resume-preview-container">
+                    <!-- Dynamic ATS resume generated here -->
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- SETTINGS MODAL -->
+    <div id="settingsModal" class="modal-overlay">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">⚙️ API &amp; Integration Settings</h3>
+                <button class="modal-close-btn" onclick="closeSettingsModal()">×</button>
+            </div>
+            <div class="form-group">
+                <label class="form-label">Gemini API Key (Optional / Overrides Env):</label>
+                <input id="settingsGeminiKey" type="password" class="form-control" placeholder="AIzaSy...">
+                <p style="font-size:0.72rem; color:var(--text-muted); margin-top:0.25rem;">
+                    If empty, the intelligent deterministic rule engine will be used automatically.
+                </p>
+            </div>
+            <div class="form-group">
+                <label class="form-label">Google Apps Script Webhook URL:</label>
+                <input id="settingsWebhookUrl" type="text" class="form-control" placeholder="https://script.google.com/macros/s/.../exec">
+            </div>
+            <div style="display:flex; justify-content:flex-end; gap:0.5rem; margin-top:1.5rem;">
+                <button class="btn btn-outline" onclick="closeSettingsModal()">Cancel</button>
+                <button class="btn btn-primary" onclick="saveSettings()">Save Configuration</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- EDIT PROFILE MODAL -->
+    <div id="editProfileModal" class="modal-overlay">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">✏️ Edit Personal &amp; Professional Profile</h3>
+                <button class="modal-close-btn" onclick="closeEditProfileModal()">×</button>
+            </div>
+            <div class="form-group">
+                <label class="form-label">Full Name:</label>
+                <input id="editProfName" type="text" class="form-control">
+            </div>
+            <div class="form-group">
+                <label class="form-label">Professional Headline / Title:</label>
+                <input id="editProfTitle" type="text" class="form-control">
+            </div>
+            <div style="display:grid; grid-template-columns:1fr 1fr; gap:0.75rem;">
+                <div class="form-group">
+                    <label class="form-label">Email:</label>
+                    <input id="editProfEmail" type="email" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Phone:</label>
+                    <input id="editProfPhone" type="text" class="form-control">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="form-label">Location:</label>
+                <input id="editProfLocation" type="text" class="form-control">
+            </div>
+            <div style="display:grid; grid-template-columns:1fr 1fr; gap:0.75rem;">
+                <div class="form-group">
+                    <label class="form-label">LinkedIn URL:</label>
+                    <input id="editProfLinkedIn" type="text" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label class="form-label">GitHub URL:</label>
+                    <input id="editProfGithub" type="text" class="form-control">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="form-label">Portfolio Website URL:</label>
+                <input id="editProfPortfolioUrl" type="text" class="form-control">
+            </div>
+            <div class="form-group">
+                <label class="form-label">Career Objective / Professional Summary:</label>
+                <textarea id="editProfSummary" class="form-control" style="min-height:100px;"></textarea>
+            </div>
+            <div style="display:flex; justify-content:flex-end; gap:0.5rem; margin-top:1.5rem;">
+                <button class="btn btn-outline" onclick="closeEditProfileModal()">Cancel</button>
+                <button class="btn btn-primary" onclick="saveProfileChanges()">Save Profile</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- DYNAMIC ADD / EDIT ENTRY MODAL -->
+    <div id="dynamicEntryModal" class="modal-overlay">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title" id="dynamicEntryModalTitle">Manage Entry</h3>
+                <button class="modal-close-btn" onclick="closeDynamicEntryModal()">×</button>
+            </div>
+            <form id="dynamicEntryForm" onsubmit="event.preventDefault(); submitDynamicEntry();">
+                <div id="dynamicFieldsContainer"></div>
+                <div style="display:flex; justify-content:flex-end; gap:0.5rem; margin-top:1.5rem;">
+                    <button type="button" class="btn btn-outline" onclick="closeDynamicEntryModal()">Cancel</button>
+                    <button type="submit" class="btn btn-primary" id="dynamicEntrySubmitBtn">Save Entry</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- ADD ENTRY MODAL (Legacy Fallback) -->
+    <div id="addEntryModal" class="modal-overlay">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">Add New <span id="addEntryCategoryName">ITEM</span></h3>
+                <button class="modal-close-btn" onclick="closeAddEntryModal()">×</button>
+            </div>
+            <div class="form-group">
+                <label class="form-label">Title / Name:</label>
+                <input id="entryNameInput" type="text" class="form-control" placeholder="e.g. Distributed Consensus Engine">
+            </div>
+            <div class="form-group">
+                <label class="form-label">Subtitle / Role / Organization / Category:</label>
+                <input id="entrySubtitleInput" type="text" class="form-control" placeholder="e.g. Architect & Lead Developer">
+            </div>
+            <div class="form-group">
+                <label class="form-label">Description / Abstract / Details:</label>
+                <textarea id="entryDescInput" class="form-control" placeholder="Details and technical highlights..."></textarea>
+            </div>
+            <div style="display:flex; justify-content:flex-end; gap:0.5rem; margin-top:1.5rem;">
+                <button class="btn btn-outline" onclick="closeAddEntryModal()">Cancel</button>
+                <button class="btn btn-primary" onclick="submitNewEntry()">Create Entry</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- TOAST CONTAINER -->
+    <div id="toastContainer" class="toast-container"></div>
+
+    <script src="/static/js/app.js"></script>
+</body>
+</html>
+

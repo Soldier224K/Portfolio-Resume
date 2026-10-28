@@ -1,0 +1,22 @@
+# Job Description 1: Backend & Distributed Systems Architect
+Company: Decentralized Compute Labs
+Target Role: Backend & Distributed Systems Architect
+Location: Remote / Hybrid
+
+About the Role:
+We are seeking an exceptional Backend & Distributed Systems Architect to build high-throughput, fault-tolerant compute networks. In this role, you will design distributed tensor-sharding pipelines, orchestrate zero-trust communication protocols, and write low-latency async services in Python, C++, and FastAPI.
+
+Key Responsibilities:
+- Design and implement distributed tensor sharding networks to execute frontier models across heterogeneous hardware nodes.
+- Engineer zero-trust peer-to-peer protocols with automated node discovery, heartbeat monitoring, and cryptographic proof-of-compute verification.
+- Build resilient, scalable backend microservices using FastAPI, asyncio, and asynchronous message passing.
+- Author comprehensive system architecture whitepapers, network topology specifications, and reproducible evaluation benchmarks.
+- Optimize network throughput and latency across local area networks and overlay VPN meshes (Tailscale).
+
+Required Qualifications:
+- Strong core foundation in distributed systems, operating systems, and computer networks.
+- High proficiency in Python (asyncio, sockets) and C++.
+- Direct hands-on experience building distributed compute networks or matrix sharding implementations.
+- Experience with zero-trust architecture, fault isolation, and Byzantine result verification.
+- Track record in engineering competitions, hackathons, or open-source infrastructure tools.
+

@@ -1,0 +1,20 @@
+# Job Description 3: Security & Systems Infrastructure Engineer
+Company: SecureSphere Enterprises
+Target Role: Security & Systems Infrastructure Engineer
+Location: Remote
+
+About the Role:
+Looking for a Security & Systems Engineer to harden enterprise microservices and zero-trust protocol pipelines. You will audit system designs, perform vulnerability research, formulate sandboxed execution boundaries, and eliminate access bypasses across distributed environments.
+
+Key Responsibilities:
+- Conduct vulnerability research and security architecture audits on distributed backend networks.
+- Formulate zero-trust data flows, mutual authentication, and cryptographic policy assertion engines.
+- Implement isolated microVM execution sandboxes (Firecracker) to safely verify untrusted AI generated output and calculations.
+- Maintain responsible disclosure practices and author threat models for enterprise cloud systems.
+
+Required Qualifications:
+- Demonstrated experience in vulnerability research, responsible disclosure (e.g. HackerOne acknowledged research).
+- Solid grasp of cryptography, mutual TLS, and access control invariants.
+- High proficiency in Python, Linux network protocols, and secure API architecture.
+- Competition awards or recognized achievements in cybersecurity or engineering system design.
+
