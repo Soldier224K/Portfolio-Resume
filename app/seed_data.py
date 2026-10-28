@@ -26,10 +26,9 @@ def seed_portfolio_data(db: Session, force: bool = False):
         github="https://github.com/Soldier224K",
         portfolio_url="https://rajrasal.dev",
         summary=(
-            "Second-year B.Tech student focused on backend systems architecture, distributed computing, "
-            "and multi-agent AI pipelines. I design and build complex infrastructure from the ground up—currently "
-            "developing a distributed tensor-sharding network and a multi-agent communication system—prioritizing "
-            "system design, integration logic, and scalable architecture."
+            "Second-year B.Tech CSE student focused on backend systems architecture, distributed computing, "
+            "and multi-agent AI pipelines. Founder of SecureVerse with a mission to build secure, human-aligned AI systems. "
+            "Passionate about AI Safety, Digital Forensics, Decentralized Infrastructure, and Verifiable Zero-Trust Computation."
         )
     )
     db.add(profile)
@@ -84,10 +83,13 @@ def seed_portfolio_data(db: Session, force: bool = False):
 
         # AI & Machine Learning
         ("Multi-Agent AI Pipelines", "AI & Machine Learning", "Expert", True),
+        ("AI Safety & Alignment", "AI & Machine Learning", "Advanced", True),
         ("LLM Intent Classification & Routing", "AI & Machine Learning", "Expert", True),
         ("Prompt Engineering & Chains", "AI & Machine Learning", "Advanced", True),
         ("RAG & Ground Truth Verification", "AI & Machine Learning", "Advanced", True),
         ("Adversarial Critic Systems", "AI & Machine Learning", "Advanced", True),
+        ("Ethical AI Systems", "AI & Machine Learning", "Advanced", False),
+        ("Predictive Computational Modeling", "AI & Machine Learning", "Intermediate", False),
 
         # Backend & Cloud Infrastructure
         ("FastAPI", "Backend & Cloud", "Expert", True),
@@ -99,7 +101,9 @@ def seed_portfolio_data(db: Session, force: bool = False):
 
         # Security & Systems Research
         ("Vulnerability Research & Bug Bounty", "Security & Systems", "Advanced", True),
+        ("Digital Forensics & Reverse Engineering", "Security & Systems", "Advanced", True),
         ("Zero-Trust Data Flow Verification", "Security & Systems", "Advanced", True),
+        ("Futuristic Systems Design", "Distributed Systems & Architecture", "Advanced", True),
         ("Sandboxing & Isolation (Firecracker)", "Security & Systems", "Advanced", False),
 
         # Soft Skills
@@ -112,20 +116,36 @@ def seed_portfolio_data(db: Session, force: bool = False):
         db.add(Skill(name=name, category=cat, proficiency=prof, is_highlighted=high))
 
     # 4. Experience
-    db.add(Experience(
-        company="Independent Tutoring Practice",
-        role="Mathematics & Physics Tutor (Grades 10–12)",
-        location="Navi Mumbai, India",
-        start_date="Jun 2024",
-        end_date="Present",
-        is_current=True,
-        description=(
-            "Taught 50+ high school students, translating complex scientific, mathematical, and algorithmic concepts into clear, structured lessons.\n"
-            "Developed diagnostic assessment frameworks to identify conceptual bottlenecks and tailored individual curricula to improve performance by an average of 22%.\n"
-            "Honed mastery of first-principles thinking, communication clarity, and pedagogical system design."
+    db.add_all([
+        Experience(
+            company="SecureVerse",
+            role="Founder & Lead Architect",
+            location="Navi Mumbai, India",
+            start_date="Oct 2025",
+            end_date="Present",
+            is_current=True,
+            description=(
+                "Founded SecureVerse to engineer decentralized zero-trust identity verification architectures, AI safety tooling, and privacy-preserving computing systems.\n"
+                "Formulated end-to-end cryptographic trust chains, automated audit mechanisms, and threat mitigation models recognized in national engineering challenges.\n"
+                "Directed technology roadmap, leading proof-of-concept development and cross-functional prototype verification."
+            ),
+            technologies="Zero-Trust Architecture, Cryptography, AI Safety, System Design, Python, Distributed Ledger"
         ),
-        technologies="Calculus, Mechanics, First-Principles Reasoning, Pedagogical System Design"
-    ))
+        Experience(
+            company="Independent Tutoring Practice",
+            role="Mathematics & Physics Tutor (Grades 10–12)",
+            location="Navi Mumbai, India",
+            start_date="Jun 2024",
+            end_date="Present",
+            is_current=True,
+            description=(
+                "Taught 50+ high school students, translating complex scientific, mathematical, and algorithmic concepts into clear, structured lessons.\n"
+                "Developed diagnostic assessment frameworks to identify conceptual bottlenecks and tailored individual curricula to improve performance by an average of 22%.\n"
+                "Honed mastery of first-principles thinking, communication clarity, and pedagogical system design."
+            ),
+            technologies="Calculus, Mechanics, First-Principles Reasoning, Pedagogical System Design"
+        )
+    ])
 
     # 5. Projects
     db.add_all([
@@ -185,8 +205,26 @@ def seed_portfolio_data(db: Session, force: bool = False):
             is_featured=True
         ),
         Project(
+            title="BioShield AI — Computational Biosafety & Health Resilience Engine",
+            subtitle_role="Lead Researcher & Architect",
+            repo_link="https://github.com/Soldier224K/bioshield-ai",
+            demo_link="https://rajrasal.dev/projects/bioshield",
+            tech_stack="Python, PyTorch, Predictive Modeling, Simulation Engines, FastAPI, Docker",
+            description=(
+                "Engineered predictive computational modeling pipelines for simulating pathogen transmission dynamics and evaluating countermeasure strategies in real time.\n"
+                "Designed distributed simulation workers to process high-throughput biological interaction datasets with deterministic validation hooks.\n"
+                "Authored biosafety compliance blueprints and zero-leakage data sandboxing mechanisms for sensitive health research data."
+            ),
+            architecture_highlights=(
+                "Event-driven asynchronous worker pool; deterministic simulation checkpointing; isolated compute sandboxes with strict egress filtering."
+            ),
+            start_date="Jan 2026",
+            end_date="Present",
+            is_featured=True
+        ),
+        Project(
             title="SecureVerse — Decentralized Zero-Trust Architecture",
-            subtitle_role="Systems Architect",
+            subtitle_role="Founder & Systems Architect",
             repo_link="https://github.com/Soldier224K/secureverse",
             demo_link="https://rajrasal.dev/projects/secureverse",
             tech_stack="Python, Cryptography, Zero-Trust Architecture, Distributed Ledger, REST APIs",

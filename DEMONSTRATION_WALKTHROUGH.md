@@ -173,11 +173,11 @@ Inspection of `portfolio.db` via `/api/database/inspect` and CLI SQLite:
 
 | Table Name | Primary Key | Record Count | Description | Sample Verified Record |
 |---|---|:---:|---|---|
-| **`profiles`** | `id` (INTEGER) | 1 | Personal info & career summary | Raj Bharat Rasal, Kharghar Navi Mumbai |
-| **`projects`** | `id` (INTEGER) | 4 | Distributed systems & AI pipelines | *SATURDAY / SUNDAY* (Distributed Tensor Sharding) |
-| **`skills`** | `id` (INTEGER) | 29 | Categorized competencies & proficiencies | *Distributed Systems Architecture* (Expert) |
+| **`profiles`** | `id` (INTEGER) | 1 | Personal info & career summary | Raj Bharat Rasal, Kharghar Navi Mumbai (Founder of SecureVerse) |
+| **`projects`** | `id` (INTEGER) | 5 | Distributed systems & AI pipelines | *SATURDAY / SUNDAY*, *BioShield AI*, *F.R.I.D.A.Y* |
+| **`skills`** | `id` (INTEGER) | 34 | Categorized competencies & proficiencies | *Distributed Systems Architecture*, *AI Safety & Alignment* |
 | **`educations`** | `id` (INTEGER) | 3 | Formal university & school education | ITM Skills University (B.Tech CSE, 2025-2029) |
-| **`experiences`** | `id` (INTEGER) | 1 | Teaching & systems engineering practice | Independent Tutoring Practice (Math & Physics, 50+ students) |
+| **`experiences`** | `id` (INTEGER) | 2 | Engineering leadership & pedagogy | SecureVerse (Founder & Architect), Tutoring Practice |
 | **`publications`** | `id` (INTEGER) | 2 | Architectural whitepapers & specifications | *HAMIA Architecture Specification* (Oct 2026) |
 | **`achievements`** | `id` (INTEGER) | 3 | Competitive awards & security research | Deal Dome 3rd Place, HackerOne OPPO Bug Bounty |
 | **`certifications`** | `id` (INTEGER) | 3 | Accreditations & security disclosures | Advanced Backend Engineering & Distributed Systems |
@@ -194,7 +194,8 @@ sqlite3 portfolio.db "SELECT id, title, tech_stack FROM projects;"
 1|SATURDAY / SUNDAY|Python, C++, Tensor Sharding, Zero-Trust Protocols, LAN, Tailscale VPN, Socket Programming
 2|F.R.I.D.A.Y — Multi-Agent Communication Backend|Python, FastAPI, Baileys API (WhatsApp), APScheduler, asyncio, LLM Intent Routing
 3|EduOS — AI Curiosity-First Education Engine|Python, FastAPI, WhatsApp Cloud API, Prompt Chains, Knowledge Graph, SQLite
-4|SecureVerse — Decentralized Zero-Trust Architecture|Python, Cryptography, Zero-Trust Architecture, Distributed Ledger, REST APIs
+4|BioShield AI — Computational Biosafety & Health Resilience Engine|Python, PyTorch, Predictive Modeling, Simulation Engines, FastAPI, Docker
+5|SecureVerse — Decentralized Zero-Trust Architecture|Python, Cryptography, Zero-Trust Architecture, Distributed Ledger, REST APIs
 ```
 
 ---
@@ -264,7 +265,7 @@ To demonstrate that two distinct, specialized resumes can be dynamically generat
 | **Input JD** | [`sample_data/job_descriptions/jd_1_distributed_systems_engineer.txt`](sample_data/job_descriptions/jd_1_distributed_systems_engineer.txt) | [`sample_data/job_descriptions/jd_2_ai_multi_agent_engineer.txt`](sample_data/job_descriptions/jd_2_ai_multi_agent_engineer.txt) |
 | **Match Score** | **88% Match** | **86% Match** |
 | **Tailored Summary** | Highlights distributed computing, tensor sharding, zero-trust protocols, and low-latency systems. | Highlights multi-agent mediator topologies, LLM intent routing, and curiosity-first knowledge engines. |
-| **Featured Projects** | 1. *SATURDAY / SUNDAY* (Tensor Sharding)<br>2. *SecureVerse* (Zero-Trust Identity)<br>3. *F.R.I.D.A.Y* (FastAPI Backend) | 1. *F.R.I.D.A.Y* (3-Agent Decoupled Backend)<br>2. *EduOS* (Curiosity-First Engine)<br>3. *SATURDAY / SUNDAY* (Distributed LLM) |
+| **Featured Projects** | 1. *SATURDAY / SUNDAY* (Tensor Sharding)<br>2. *SecureVerse* (Zero-Trust Identity)<br>3. *F.R.I.D.A.Y* (FastAPI Backend) | 1. *F.R.I.D.A.Y* (3-Agent Decoupled Backend)<br>2. *BioShield AI* (Computational Biosafety)<br>3. *EduOS* (Curiosity-First Engine) |
 | **Featured Whitepaper** | *HAMIA Architecture Specification* | *HAMIA* + *TWELVE Product Documentation* |
 | **Primary Skills** | C++, Tensor Sharding, Zero-Trust, Async Python | Intent Routing, Prompt Chains, RAG, FastAPI |
 | **Output Formats** | [PDF](sample_data/generated_resumes/Resume_Distributed_Systems_Engineer.pdf) & [DOCX](sample_data/generated_resumes/Resume_Distributed_Systems_Engineer.docx) | [PDF](sample_data/generated_resumes/Resume_AI_MultiAgent_Engineer.pdf) & [DOCX](sample_data/generated_resumes/Resume_AI_MultiAgent_Engineer.docx) |
