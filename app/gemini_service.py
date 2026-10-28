@@ -5,7 +5,7 @@ import warnings
 from typing import Dict, Any, List, Optional
 
 # Suppress library deprecation warning
-warnings.filterwarnings("ignore", category=FutureWarning, module="google.generativeai")
+warnings.filterwarnings("ignore", category=FutureWarning)
 import google.generativeai as genai
 
 # Global or session settings

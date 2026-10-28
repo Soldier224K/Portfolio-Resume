@@ -831,6 +831,94 @@ function renderSheetsHub() {
             <div class="stat-box"><div class="stat-num">${(currentPortfolio.publications || []).length}</div><div class="stat-label">Whitepapers</div></div>
         </div>
     `;
+    switchSpreadsheetSheet('Profile');
+}
+
+// Interactive Google Sheets Spreadsheet Viewer
+function switchSpreadsheetSheet(sheetName, el) {
+    if (el) {
+        el.parentElement.querySelectorAll(".sub-tab-btn").forEach(b => b.classList.remove("active"));
+        el.classList.add("active");
+    }
+    if (!currentPortfolio) return;
+    const thead = document.getElementById("spreadsheetPreviewHead");
+    const tbody = document.getElementById("spreadsheetPreviewBody");
+    if (!thead || !tbody) return;
+
+    let headers = [];
+    let rows = [];
+
+    if (sheetName === "Profile") {
+        headers = ["Row", "A (Field)", "B (Value)"];
+        const p = currentPortfolio.profile || {};
+        const fields = [
+            ["Name", p.name || ""], ["Title", p.title || ""], ["Email", p.email || ""],
+            ["Phone", p.phone || ""], ["Location", p.location || ""], ["LinkedIn", p.linkedin || ""],
+            ["GitHub", p.github || ""], ["Portfolio URL", p.portfolio_url || ""], ["Professional Summary", p.summary || ""]
+        ];
+        rows = fields.map((f, i) => [i + 2, f[0], f[1]]);
+    } else if (sheetName === "Education") {
+        headers = ["Row", "A (Institution)", "B (Degree)", "C (Field)", "D (Start)", "E (End)", "F (Score)"];
+        rows = (currentPortfolio.education || []).map((e, i) => [i + 2, e.institution, e.degree, e.field_of_study, e.start_year, e.end_year, e.score || ""]);
+    } else if (sheetName === "Skills") {
+        headers = ["Row", "A (Skill Name)", "B (Category)", "C (Proficiency)", "D (Highlighted)"];
+        rows = (currentPortfolio.skills || []).map((s, i) => [i + 2, s.name, s.category, s.proficiency, s.is_highlighted ? "Yes" : "No"]);
+    } else if (sheetName === "Experience") {
+        headers = ["Row", "A (Company)", "B (Role)", "C (Start)", "D (End)", "E (Description)"];
+        rows = (currentPortfolio.experiences || []).map((ex, i) => [i + 2, ex.company, ex.role, ex.start_date, ex.end_date, ex.description.slice(0, 70) + "..."]);
+    } else if (sheetName === "Projects") {
+        headers = ["Row", "A (Title)", "B (Role)", "C (Tech Stack)", "D (Featured)", "E (Architecture Highlights)"];
+        rows = (currentPortfolio.projects || []).map((p, i) => [i + 2, p.title, p.subtitle_role, p.tech_stack, p.is_featured ? "Yes" : "No", (p.architecture_highlights || "").slice(0, 60) + "..."]);
+    } else if (sheetName === "Certifications") {
+        headers = ["Row", "A (Name)", "B (Issuing Org)", "C (Date)", "D (Credential ID)"];
+        rows = (currentPortfolio.certifications || []).map((c, i) => [i + 2, c.name, c.issuing_org, c.issue_date, c.credential_id || ""]);
+    } else if (sheetName === "Achievements") {
+        headers = ["Row", "A (Title)", "B (Issuer)", "C (Date)", "D (Category)"];
+        rows = (currentPortfolio.achievements || []).map((a, i) => [i + 2, a.title, a.issuer, a.date || "", a.category || ""]);
+    } else if (sheetName === "Publications") {
+        headers = ["Row", "A (Title)", "B (Venue Type)", "C (Publisher)", "D (Date)"];
+        rows = (currentPortfolio.publications || []).map((pb, i) => [i + 2, pb.title, pb.venue_type, pb.publisher, pb.publication_date || ""]);
+    } else if (sheetName === "Languages") {
+        headers = ["Row", "A (Language)", "B (Proficiency)"];
+        rows = (currentPortfolio.languages || []).map((l, i) => [i + 2, l.language, l.proficiency]);
+    }
+
+    thead.innerHTML = `<tr>${headers.map((h, i) => `<th style="${i === 0 ? 'width:50px; text-align:center; color:#64748b;' : 'color:var(--accent-emerald); font-weight:700;'}">${h}</th>`).join("")}</tr>`;
+    tbody.innerHTML = rows.map(r => `
+        <tr>
+            ${r.map((cell, ci) => ci === 0 ? `<td style="text-align:center; color:#64748b; font-weight:600;">${cell}</td>` : `<td>${cell}</td>`).join("")}
+        </tr>
+    `).join("");
+}
+
+// Database Schema Inspector
+async function toggleDatabaseInspector() {
+    const container = document.getElementById("dbInspectorContainer");
+    if (!container) return;
+    if (container.style.display === "block") {
+        container.style.display = "none";
+        return;
+    }
+    container.style.display = "block";
+    const grid = document.getElementById("dbInspectorGrid");
+    grid.innerHTML = `<div style="color:var(--text-muted); font-size:0.8rem;">Loading SQLite schema...</div>`;
+    try {
+        const res = await fetch("/api/database/inspect");
+        const data = await res.json();
+        grid.innerHTML = data.tables.map(t => `
+            <div style="background:rgba(15,23,42,0.8); border:1px solid var(--border-color); border-radius:var(--radius-sm); padding:0.85rem;">
+                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.35rem;">
+                    <strong style="color:var(--accent-cyan); font-family:var(--font-mono); font-size:0.85rem;">${t.table_name}</strong>
+                    <span class="tag-badge" style="font-size:0.65rem;">${t.row_count} rows</span>
+                </div>
+                <div style="font-size:0.72rem; color:var(--text-muted); font-family:var(--font-mono); max-height:85px; overflow-y:auto; line-height:1.4;">
+                    ${t.columns.map(c => `<div>• ${c.name} <span style="color:#64748b;">(${c.type})</span></div>`).join("")}
+                </div>
+            </div>
+        `).join("");
+    } catch (e) {
+        grid.innerHTML = `<div style="color:var(--accent-rose); font-size:0.8rem;">Error loading schema: ${e.message}</div>`;
+    }
 }
 
 // Sample JDs loader

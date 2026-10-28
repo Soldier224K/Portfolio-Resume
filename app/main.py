@@ -6,7 +6,7 @@ from fastapi.staticfiles import StaticFiles
 from sqlalchemy.orm import Session
 
 from app.database import (
-    init_db, get_db, SessionLocal,
+    init_db, get_db, SessionLocal, engine,
     Profile, Education, Skill, Experience, Project,
     Certification, Achievement, Publication, Language
 )
@@ -107,9 +107,46 @@ def reset_portfolio(db: Session = Depends(get_db)):
     export_portfolio_to_file(full_data)
     return {"message": "Portfolio database reset to default verified records successfully"}
 
-# ==========================================
-# CRUD: PROFILE
-# ==========================================
+@app.get("/api/database/inspect")
+def inspect_database(db: Session = Depends(get_db)):
+    """Return database metadata, table schemas, and row counts for live demonstration."""
+    from sqlalchemy import inspect, text
+    inspector = inspect(engine)
+    table_names = inspector.get_table_names()
+    
+    tables_meta = []
+    for t in table_names:
+        cols = inspector.get_columns(t)
+        try:
+            row_count = db.execute(text(f"SELECT COUNT(*) FROM {t}")).scalar()
+        except Exception:
+            row_count = 0
+
+        tables_meta.append({
+            "table_name": t,
+            "row_count": row_count,
+            "columns": [{"name": c["name"], "type": str(c["type"]), "nullable": c.get("nullable", True)} for c in cols]
+        })
+    
+    return {
+        "database_type": "SQLite 3 Relational Database",
+        "database_file": "portfolio.db",
+        "tables_count": len(table_names),
+        "tables": tables_meta
+    }
+
+@app.get("/api/database/table-rows/{table_name}")
+def get_table_rows(table_name: str, db: Session = Depends(get_db)):
+    """Fetch raw rows from any table for the Database Inspector."""
+    valid_tables = ["profiles", "educations", "skills", "experiences", "projects", "certifications", "achievements", "publications", "languages"]
+    if table_name not in valid_tables:
+        raise HTTPException(status_code=400, detail="Invalid table name")
+    
+    from sqlalchemy import text
+    with engine.connect() as conn:
+        result = conn.execute(text(f"SELECT * FROM {table_name}"))
+        rows = [dict(row._mapping) for row in result]
+    return {"table_name": table_name, "count": len(rows), "rows": rows}
 
 @app.get("/api/profile", response_model=ProfileResponse)
 def get_profile(db: Session = Depends(get_db)):
